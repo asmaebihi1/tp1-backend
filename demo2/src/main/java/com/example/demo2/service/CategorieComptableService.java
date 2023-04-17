@@ -15,6 +15,7 @@ public class CategorieComptableService {
     private CategorieComptableDao categorieComptableDao;
 
     public int save(CategorieComptable categorieComptable){
+
         if (findByCode(categorieComptable.getCode()) != null) {
             return -1;
         }else{
