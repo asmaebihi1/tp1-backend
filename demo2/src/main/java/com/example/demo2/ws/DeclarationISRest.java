@@ -6,6 +6,7 @@ import com.example.demo2.vo.DeclarationIsVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -20,7 +21,7 @@ public class DeclarationISRest {
     }
 
     @GetMapping("/annee/{annee}")
-    public DeclarationIS findByAnnee(@PathVariable double annee) {
+    public DeclarationIS findByAnnee(@PathVariable Date annee) {
         return declarationISService.findByAnnee(annee);
     }
 

@@ -1,5 +1,6 @@
 package com.example.demo2.service;
 
+import com.example.demo2.bean.Comptable;
 import com.example.demo2.bean.DeclarationIS;
 import com.example.demo2.bean.Societe;
 import com.example.demo2.bean.TauxIS;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -94,7 +96,7 @@ public class DeclarationISService {
 
         return entityManager.createQuery(query).getResultList();
     }
-    public DeclarationIS findByAnnee(double annee) {
+    public DeclarationIS findByAnnee(Date annee) {
         return declarationISDao.findByAnnee(annee);
     }
 
@@ -135,24 +137,13 @@ public class DeclarationISService {
         return montantP;
     }
 
-    public int save(DeclarationIS declarationIS) {
-        Societe societe = societeService.findByIce(declarationIS.getSociete().getIce());
-        declarationIS.setSociete(societe);
-        TauxIS tauxIS = tauxISService.findByRef(declarationIS.getTauxIS().getRef());
-        declarationIS.setTauxIS(tauxIS);
 
 
-        if(findByAnnee(declarationIS.getAnnee()) != null){ return -1; }
-        else if(societe == null)
-        { return -2; }
-        else if(tauxIS == null)
-        { return -3; }
-
-        else{
-            declarationIS.setTotalHTDiff(declarationIS.getTotalHTGain()-declarationIS.getTotalHTCharge());
-            affectMontantPaye(declarationIS);
+    public int save(DeclarationIS declarationIS){
+        if (findByAnnee(declarationIS.getAnnee()) != null) {
+            return -1;
+        }else{
             declarationISDao.save(declarationIS);
-
             return 1;
         }
     }

@@ -1,12 +1,13 @@
 package com.example.demo2.bean;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 public class DeclarationIS {
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private double annee;
+    private Date annee;
     private double totalHTGain;
     private double totalHTCharge;
     private double totalHTDiff;
@@ -25,11 +26,11 @@ public class DeclarationIS {
         this.id = id;
     }
 
-    public double getAnnee() {
+    public Date getAnnee() {
         return annee;
     }
 
-    public void setAnnee(double annee) {
+    public void setAnnee(Date annee) {
         this.annee = annee;
     }
 
