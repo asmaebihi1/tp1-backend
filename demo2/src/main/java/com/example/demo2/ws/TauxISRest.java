@@ -12,12 +12,12 @@ public class TauxISRest {
     @Autowired
     private TauxISService tauxISService;
 
-    @GetMapping("/reference/{ref}")
+    @GetMapping("/ref/{ref}")
     public TauxIS findByRef(@PathVariable String ref) {
         return tauxISService.findByRef(ref);
     }
 
-    @DeleteMapping("/reference/{ref}")
+    @DeleteMapping("/ref/{ref}")
     public int deleteByRef(@PathVariable String ref) {
         return tauxISService.deleteByRef(ref);
     }
