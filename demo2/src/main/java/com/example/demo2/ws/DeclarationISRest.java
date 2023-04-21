@@ -30,10 +30,7 @@ public class DeclarationISRest {
         return declarationISService.calculMontantIS(rf);
     }
 
-    @PostMapping("/")
-    public double affectMontantPaye(@RequestBody DeclarationIS declarationIS) {
-        return declarationISService.affectMontantPaye(declarationIS);
-    }
+
 
     @GetMapping("/")
     public List<DeclarationIS> findAll() {
